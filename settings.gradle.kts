@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Task 2"
 include(":app")
- 
+include(":app", ":domain")

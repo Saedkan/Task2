@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -50,7 +51,24 @@ android {
 }
 
 dependencies {
-
+    val roomVersion = "2.6.1"
+    val retrofitVersion = "2.9.0" // можно обновить, если нужно
+    val okhttpVersion = "4.12.0"
+    //noinspection UseTomlInstead
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.viewmodel) // для старых версий
+    implementation(libs.koin.androidx.compose)
+    testImplementation(libs.koin.test)
+    implementation(project(":domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
